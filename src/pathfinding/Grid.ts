@@ -1,3 +1,4 @@
+import Navigator from './Navigator';
 import NavigatorTile from './NavigatorTile';
 import size from '../interfaces/size';
 import Vector from '../triangulation/Vector';
@@ -29,6 +30,24 @@ export default class Grid {
 
   findTile(position: Vector): NavigatorTile | null {
     return Grid.getTile(position, this.rows);
+  }
+
+  getNeighbors(tile: NavigatorTile): NavigatorTile[] {
+    const neighbors: NavigatorTile[] = [];
+
+    for (let i = 0; i < 9; i++) {
+      const x: number = tile.position.x + Navigator.getColOffset(i);
+      const y: number = tile.position.y + Navigator.getRowOffset(i);
+      const exploring: NavigatorTile | null = this.findTile(
+        new Vector({ x, y })
+      );
+
+      if(exploring && exploring.id !== tile.id) {
+        neighbors.push(exploring);
+      }
+    } 
+
+    return neighbors;
   }
 
   private static getTile({ x, y }: Vector, list: row[]): NavigatorTile | null {

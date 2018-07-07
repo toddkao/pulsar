@@ -2,20 +2,20 @@ import Vector from '../triangulation/Vector';
 import uniqueID from '../util/uniqueID';
 import { contains } from '../util/id';
 export default class Navigator {
-    constructor(grid, begin, end, onExplore = () => { }, onComplete = Navigator.defaultOnComplete) {
+    constructor(grid, begin, end, onExplore = () => { }, onComplete = Navigator.defaultOnComplete, debug = false, debugMaxSteps = 0) {
         this.grid = grid;
         this.begin = begin;
         this.end = end;
         this.onExplore = onExplore;
         this.onComplete = onComplete;
+        this.debug = debug;
+        this.debugMaxSteps = debugMaxSteps;
         this.id = uniqueID();
         this._path = [];
-        this.verticalCost = 1;
-        this.diagonalCost = 1.4;
-        this.neighborsCount = 9;
         this.tiles = [];
         this.open = [];
         this.closed = [];
+        this.debugSteps = 0;
     }
     get path() {
         return this._path;
@@ -49,9 +49,9 @@ export default class Navigator {
     calculateG(tile) {
         this.current = tile;
         const tileNavData = tile.getNavigatorData(this);
-        for (let i = 0; i < this.neighborsCount; i++) {
+        for (let i = 0; i < Navigator.neighborsCount; i++) {
             const x = tile.position.x + Navigator.getColOffset(i);
-            const y = tile.position.y + this.getRowOffset(i);
+            const y = tile.position.y + Navigator.getRowOffset(i);
             const exploring = this.grid.findTile(new Vector({ x, y }));
             if (!exploring) {
                 continue;
@@ -74,35 +74,50 @@ export default class Navigator {
                     this.open.push(exploring);
                 }
                 if (Navigator.isDiagonal(tile, exploring)) {
-                    exploringNavData.gVal = tileNavData.gVal + this.diagonalCost;
+                    exploringNavData.gVal = tileNavData.gVal + Navigator.diagonalCost;
                 }
                 else {
-                    exploringNavData.gVal = tileNavData.gVal + this.verticalCost;
+                    exploringNavData.gVal = tileNavData.gVal + Navigator.verticalCost;
                 }
             }
             exploringNavData.fVal = this.calculateF(exploring);
         }
-        const next = this.chooseNext();
-        if (next) {
-            this.onExplore(next);
-            this.calculateG(next);
+        if (!this.debug) {
+            const next = this.chooseNext();
+            if (next) {
+                this.onExplore(next);
+                this.calculateG(next);
+            }
+            else {
+                const path = this.getPath();
+                this.onComplete(path);
+            }
         }
         else {
-            const path = this.getPath();
-            this.onComplete(path);
+            if (this.debugSteps++ < this.debugMaxSteps) {
+                const next = this.chooseNext();
+                if (next) {
+                    this.onExplore(next);
+                    this.calculateG(next);
+                }
+                else {
+                    const path = this.getPath();
+                    this.onComplete(path);
+                }
+            }
         }
     }
     calculateF(tile) {
         const { gVal, hVal } = tile.getNavigatorData(this);
         return gVal + hVal;
     }
-    getRowOffset(iteration) {
+    static getRowOffset(iteration) {
         /*
            iteration = 0, 1, or 2: [-1][-1][-1]
            iteration = 3, 4, or 5: [ 0][ 0][ 0]
            iteration = 6, 7, or 8: [+1][+1][+1]
          */
-        return this.neighborsCount + -Math.floor((32 - iteration) / 3);
+        return Navigator.neighborsCount + -Math.floor((32 - iteration) / 3);
     }
     static getColOffset(iteration) {
         /*
@@ -124,8 +139,8 @@ export default class Navigator {
             return tile;
         }
         const moveCost = Navigator.isDiagonal(tile, checkTile)
-            ? this.diagonalCost
-            : this.verticalCost;
+            ? Navigator.diagonalCost
+            : Navigator.verticalCost;
         if (tileNavData.gVal + moveCost < checkNavData.gVal) {
             checkNavData.parent = tile;
             return tile;
@@ -163,6 +178,7 @@ export default class Navigator {
                 break;
             }
         }
+        this._path.push(this.begin);
         this._path.reverse();
         return this._path;
     }
@@ -170,4 +186,7 @@ export default class Navigator {
         console.log(path);
     }
 }
+Navigator.verticalCost = 1;
+Navigator.diagonalCost = 1.4;
+Navigator.neighborsCount = 9;
 //# sourceMappingURL=Navigator.js.map

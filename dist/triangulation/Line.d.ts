@@ -8,6 +8,7 @@ export default class Line implements id {
     static AllLines: Line[];
     constructor(a: Vector, b: Vector);
     readonly length: number;
+    readonly midpoint: Vector;
     clone(): Line;
     equals(line: Line): boolean;
     makeDisjoinedSets(): void;

@@ -15,6 +15,13 @@ export default class Line implements id {
     return this.a.sub(this.b).magnitude();
   }
 
+  get midpoint(): Vector {
+    const x = (this.a.x + this.b.x) / 2;
+    const y = (this.a.y + this.b.y) / 2;
+
+    return new Vector({ x, y });
+  }
+
   clone(): Line {
     return new Line(this.a, this.b);
   }

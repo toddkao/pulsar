@@ -12,6 +12,7 @@ export default class Grid {
     randomTile(): NavigatorTile | null;
     randomFreeTile(): NavigatorTile | null;
     findTile(position: Vector): NavigatorTile | null;
+    getNeighbors(tile: NavigatorTile): NavigatorTile[];
     private static getTile;
     private makeGrid;
 }

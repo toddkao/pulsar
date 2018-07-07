@@ -1,3 +1,4 @@
+import Vector from './Vector';
 import uniqueId from '../util/uniqueID';
 import Triangle from './Triangle';
 import DisjoinedSet from './DisjoinedSet';
@@ -10,6 +11,11 @@ export default class Line {
     }
     get length() {
         return this.a.sub(this.b).magnitude();
+    }
+    get midpoint() {
+        const x = (this.a.x + this.b.x) / 2;
+        const y = (this.a.y + this.b.y) / 2;
+        return new Vector({ x, y });
     }
     clone() {
         return new Line(this.a, this.b);
