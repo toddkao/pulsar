@@ -3,11 +3,14 @@ import NavigatorTile from './NavigatorTile';
 import row from '../interfaces/row';
 export default class Obstacles {
     private grid;
-    private readonly openList;
+    private openList;
     private readonly closedList;
+    private readonly forbiddenList;
     constructor(grid: Grid);
     readonly list: NavigatorTile[];
     add(tile: NavigatorTile): boolean;
+    clear(): void;
+    addToForbidden(tile: NavigatorTile): void;
     remove(tile: NavigatorTile): boolean;
     addRandom(count?: number): NavigatorTile | row | null;
     removeRandom(count?: number): NavigatorTile | row | null;

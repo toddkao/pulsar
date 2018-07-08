@@ -12,6 +12,7 @@ export default class Navigator implements id {
     private readonly onComplete;
     private debug;
     private debugMaxSteps;
+    private debugInterval;
     id: number;
     private _path;
     static verticalCost: number;
@@ -22,9 +23,12 @@ export default class Navigator implements id {
     private closed;
     current: NavigatorTile;
     private debugSteps;
-    constructor(grid: Grid, begin: NavigatorTile, end: NavigatorTile, onExplore?: onExplore, onComplete?: onComplete, debug?: boolean, debugMaxSteps?: number);
+    isDone: boolean;
+    forceStop: boolean;
+    constructor(grid: Grid, begin: NavigatorTile, end: NavigatorTile, onExplore?: onExplore, onComplete?: onComplete, debug?: boolean, debugMaxSteps?: number, debugInterval?: number);
     readonly path: row;
     start(): void;
+    stop(): void;
     private addOpenTiles;
     private calculateH;
     calculateG(tile: NavigatorTile): void;

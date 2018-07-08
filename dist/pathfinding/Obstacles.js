@@ -5,6 +5,7 @@ export default class Obstacles {
         this.grid = grid;
         this.openList = [];
         this.closedList = [];
+        this.forbiddenList = [];
         this.openList = grid.tiles;
     }
     get list() {
@@ -12,6 +13,14 @@ export default class Obstacles {
     }
     add(tile) {
         return this.manipulate(true, tile);
+    }
+    clear() {
+        this.openList = [...this.openList, ...this.closedList];
+        this.closedList.length = 0;
+        this.openList.forEach((tile) => tile.isObstacle = false);
+    }
+    addToForbidden(tile) {
+        this.forbiddenList.push(tile);
     }
     remove(tile) {
         return this.manipulate(false, tile);
@@ -65,7 +74,7 @@ export default class Obstacles {
             list = this.closedList;
             otherList = this.openList;
         }
-        if (contains(list, tile)) {
+        if (contains(list, tile) && !contains(this.forbiddenList, tile)) {
             tile.isObstacle = add;
             const index = findIndex(list, tile);
             list.splice(index, 1);

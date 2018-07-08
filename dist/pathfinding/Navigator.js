@@ -2,7 +2,7 @@ import Vector from '../triangulation/Vector';
 import uniqueID from '../util/uniqueID';
 import { contains } from '../util/id';
 export default class Navigator {
-    constructor(grid, begin, end, onExplore = () => { }, onComplete = Navigator.defaultOnComplete, debug = false, debugMaxSteps = 0) {
+    constructor(grid, begin, end, onExplore = () => { }, onComplete = Navigator.defaultOnComplete, debug = false, debugMaxSteps = 0, debugInterval = null) {
         this.grid = grid;
         this.begin = begin;
         this.end = end;
@@ -10,12 +10,15 @@ export default class Navigator {
         this.onComplete = onComplete;
         this.debug = debug;
         this.debugMaxSteps = debugMaxSteps;
+        this.debugInterval = debugInterval;
         this.id = uniqueID();
         this._path = [];
         this.tiles = [];
         this.open = [];
         this.closed = [];
         this.debugSteps = 0;
+        this.isDone = false;
+        this.forceStop = false;
     }
     get path() {
         return this._path;
@@ -27,6 +30,9 @@ export default class Navigator {
         const beginNavData = this.begin.getNavigatorData(this);
         beginNavData.gVal = 0;
         this.calculateG(this.begin);
+    }
+    stop() {
+        this.forceStop = true;
     }
     addOpenTiles(grid) {
         grid.rows.forEach((row) => {
@@ -82,11 +88,22 @@ export default class Navigator {
             }
             exploringNavData.fVal = this.calculateF(exploring);
         }
+        if (this.forceStop)
+            return;
+        this.isDone = false;
         if (!this.debug) {
             const next = this.chooseNext();
             if (next) {
-                this.onExplore(next);
-                this.calculateG(next);
+                if (this.debugInterval === null) {
+                    this.onExplore(next);
+                    this.calculateG(next);
+                }
+                else {
+                    setTimeout(() => {
+                        this.onExplore(next);
+                        this.calculateG(next);
+                    }, this.debugInterval);
+                }
             }
             else {
                 const path = this.getPath();
@@ -180,6 +197,7 @@ export default class Navigator {
         }
         this._path.push(this.begin);
         this._path.reverse();
+        this.isDone = true;
         return this._path;
     }
     static defaultOnComplete(path) {

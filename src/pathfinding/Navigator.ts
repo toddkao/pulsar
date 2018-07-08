@@ -20,6 +20,8 @@ export default class Navigator implements id {
   private closed: row = [];
   current: NavigatorTile;
   private debugSteps: number = 0;
+  isDone: boolean = false;
+  forceStop: boolean = false;
 
   constructor(
     private grid: Grid,
@@ -28,7 +30,8 @@ export default class Navigator implements id {
     private readonly onExplore: onExplore = () => {},
     private readonly onComplete: onComplete = Navigator.defaultOnComplete,
     private debug: boolean = false,
-    private debugMaxSteps: number = 0
+    private debugMaxSteps: number = 0,
+    private debugInterval: number = null
   ) {}
 
   get path(): row {
@@ -42,6 +45,10 @@ export default class Navigator implements id {
     const beginNavData: NavigatorData = this.begin.getNavigatorData(this);
     beginNavData.gVal = 0;
     this.calculateG(this.begin);
+  }
+
+  stop(): void {
+    this.forceStop = true;
   }
 
   private addOpenTiles(grid: Grid): void {
@@ -110,12 +117,21 @@ export default class Navigator implements id {
       exploringNavData.fVal = this.calculateF(exploring);
     }
 
+    if (this.forceStop) return;
+    this.isDone = false;
     if (!this.debug) {
       const next = this.chooseNext();
   
       if (next) {
-        this.onExplore(next);
-        this.calculateG(next);
+        if (this.debugInterval === null) {
+          this.onExplore(next);
+          this.calculateG(next);
+        } else {
+          setTimeout(() => {
+            this.onExplore(next);
+            this.calculateG(next);
+          }, this.debugInterval);
+        }
       } else {
         const path: NavigatorTile[] = this.getPath();
         this.onComplete(path);
@@ -232,6 +248,7 @@ export default class Navigator implements id {
 
     this._path.push(this.begin);
     this._path.reverse();
+    this.isDone = true;
     return this._path;
   }
 

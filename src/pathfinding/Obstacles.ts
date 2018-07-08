@@ -5,8 +5,9 @@ import { contains, findIndex } from '../util/id';
 import row from '../interfaces/row';
 
 export default class Obstacles {
-  private readonly openList: NavigatorTile[] = [];
+  private openList: NavigatorTile[] = [];
   private readonly closedList: NavigatorTile[] = [];
+  private readonly forbiddenList: NavigatorTile[] = [];
 
   constructor(private grid: Grid) {
     this.openList = grid.tiles;
@@ -18,6 +19,16 @@ export default class Obstacles {
 
   add(tile: NavigatorTile): boolean {
     return this.manipulate(true, tile);
+  }
+
+  clear(): void {
+    this.openList = [...this.openList, ...this.closedList];
+    this.closedList.length = 0;
+    this.openList.forEach((tile: NavigatorTile) => tile.isObstacle = false);
+  }
+
+  addToForbidden(tile: NavigatorTile): void {
+    this.forbiddenList.push(tile);
   }
 
   remove(tile: NavigatorTile): boolean {
@@ -90,7 +101,7 @@ export default class Obstacles {
       otherList = this.openList;
     }
 
-    if (contains(list, tile)) {
+    if (contains(list, tile) && !contains(this.forbiddenList, tile)) {
       tile.isObstacle = add;
       const index = findIndex(list, tile);
       list.splice(index, 1);
