@@ -2,6 +2,10 @@ import { Vector, Shape } from '../common';
 
 export default class QuadTree {
   children: QuadTree[] = [];
+  quad1: QuadTree = null;
+  quad2: QuadTree = null;
+  quad3: QuadTree = null;
+  quad4: QuadTree = null;
   containedPoints: Vector[] = [];
 
   private parent: QuadTree;
@@ -28,7 +32,7 @@ export default class QuadTree {
     }
   }
 
-  divide(points: Vector[]): void {
+  private divide(points: Vector[]): void {
     const {
       topLeft,
       topRight,
@@ -44,18 +48,18 @@ export default class QuadTree {
     ]);
 
     const shape1: Shape = new Shape([topLeft, top, centroid, left]);
-    const quad1: QuadTree = new QuadTree(shape1, points);
+    this.quad1 = new QuadTree(shape1, points);
 
     const shape2: Shape = new Shape([top, topRight, right, centroid]);
-    const quad2: QuadTree = new QuadTree(shape2, points);
+    this.quad2 = new QuadTree(shape2, points);
 
     const shape3: Shape = new Shape([centroid, right, bottomRight, bottom]);
-    const quad3: QuadTree = new QuadTree(shape3, points);
+    this.quad3 = new QuadTree(shape3, points);
 
     const shape4: Shape = new Shape([centroid, bottom, bottomLeft, left]);
-    const quad4: QuadTree = new QuadTree(shape4, points);
+    this.quad4 = new QuadTree(shape4, points);
 
-    this.children.push(quad1, quad2, quad3, quad4);
+    this.children.push(this.quad1, this.quad2, this.quad3, this.quad4);
 
     this.children.forEach((child: QuadTree) => {
       child.parent = this;
