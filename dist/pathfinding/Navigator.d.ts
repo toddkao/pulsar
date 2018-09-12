@@ -5,17 +5,16 @@ export default class Navigator implements id {
     private verticalCost;
     private diagonalCost;
     private static neighborsCount;
-    private tiles;
     private open;
     private closed;
     private registeredTiles;
     private grid;
-    private begin;
-    private end;
-    private onExplore;
-    private onComplete;
-    private maxSteps;
     private steps;
+    private readonly begin;
+    private readonly end;
+    private readonly onExplore;
+    private readonly onComplete;
+    private readonly maxSteps;
     constructor({ grid, begin, end, onExplore, onComplete, maxSteps, }: navigatorSettings);
     readonly path: row;
     /** Begin the pathfinding process. Does not start if destination is an obstacle. */

@@ -4,9 +4,6 @@ import NavigatorData from './NavigatorData';
 import { row, id, navigatorSettings } from '../interfaces';
 import { uniqueId, contains } from '../util';
 
-type onExplore = (tile: NavigatorTile) => void;
-type onComplete = (path: NavigatorTile[]) => void;
-
 export default class Navigator implements id {
   id: number = uniqueId();
   private _path: row = [];

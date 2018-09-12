@@ -5,7 +5,6 @@ export default class Navigator {
         this._path = [];
         this.verticalCost = 1;
         this.diagonalCost = 1.4;
-        this.tiles = [];
         this.open = [];
         this.closed = [];
         this.registeredTiles = [];
