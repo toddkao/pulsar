@@ -1,0 +1,1 @@
+{"code":"const floatPrecision = 2;\r\nconst toFloat = (number) => {\r\n    return Number(number.toFixed(floatPrecision));\r\n};\r\nexport default toFloat;\r\n"}

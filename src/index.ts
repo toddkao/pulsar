@@ -1,3 +1,10 @@
+import tickData from './interfaces/tickData';
+import point from './interfaces/point';
+import size from './interfaces/size';
+import limits from './interfaces/limits';
+import row from './interfaces/row';
+import navigatorSettings from './interfaces/navigatorSettings';
+
 import { Grid, Navigator, NavigatorTile } from './pathfinding';
 import { Triangulation, Hull } from './triangulation';
 import { QuadTree } from './quadtree';
@@ -12,14 +19,6 @@ import {
   removeFromArray,
 } from './util';
 import { Entity, Component, Updater } from './ecs';
-import {
-  tickData,
-  point,
-  size,
-  limits,
-  row,
-  navigatorSettings,
-} from './interfaces';
 import {
   randomPoint,
   randomPoints,

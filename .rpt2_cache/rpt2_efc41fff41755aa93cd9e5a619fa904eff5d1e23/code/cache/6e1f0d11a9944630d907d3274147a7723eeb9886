@@ -1,0 +1,1 @@
+{"code":"import { uniqueId } from '../util';\r\nexport default class Component {\r\n    constructor() {\r\n        this.id = uniqueId();\r\n        this.updatePriority = null;\r\n    }\r\n    start() { }\r\n    stop() { }\r\n    update(tickData) { }\r\n}\r\n"}

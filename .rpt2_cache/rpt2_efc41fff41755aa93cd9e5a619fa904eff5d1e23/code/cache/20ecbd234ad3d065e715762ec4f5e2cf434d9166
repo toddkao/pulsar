@@ -1,0 +1,1 @@
+{"code":"const isOdd = (n) => Math.abs(n % 2) === 1;\r\nconst isEven = (n) => n % 2 === 0;\r\nconst isNumeric = (n) => {\r\n    return !isNaN(parseFloat(n.toString())) && isFinite(n);\r\n};\r\nexport { isOdd, isEven, isNumeric };\r\n"}

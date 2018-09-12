@@ -1,0 +1,1 @@
+{"code":"let id = 0;\r\nconst uniqueId = () => id++;\r\nexport default uniqueId;\r\n"}

@@ -1,0 +1,1 @@
+{"code":"import { uniqueId } from '../util';\r\nexport default class Entity {\r\n    constructor() {\r\n        this.id = uniqueId();\r\n        this.components = [];\r\n    }\r\n    start() { }\r\n    stop() { }\r\n}\r\n"}
