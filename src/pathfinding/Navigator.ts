@@ -13,18 +13,17 @@ export default class Navigator implements id {
   private verticalCost: number = 1;
   private diagonalCost: number = 1.4;
   private static neighborsCount: number = 9;
-  private tiles: row = [];
   private open: row = [];
   private closed: row = [];
   private registeredTiles: NavigatorTile[] = [];
-
   private grid: Grid;
-  private begin: NavigatorTile;
-  private end: NavigatorTile;
-  private onExplore: (tile: NavigatorTile) => void;
-  private onComplete: (path: NavigatorTile[]) => void;
-  private maxSteps: number;
   private steps: number = 0;
+
+  private readonly begin: NavigatorTile;
+  private readonly end: NavigatorTile;
+  private readonly onExplore: (tile: NavigatorTile) => void;
+  private readonly onComplete: (path: NavigatorTile[]) => void;
+  private readonly maxSteps: number;
 
   constructor({
     grid,
