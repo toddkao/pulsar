@@ -1,1 +1,0 @@
-{"code":"import Component from './Component';\r\nimport Entity from './Entity';\r\nimport Updater from './Updater/Updater';\r\nexport { Component, Entity, Updater };\r\n"}

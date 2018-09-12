@@ -1,1 +1,0 @@
-{"code":"const RadToDeg = (rad) => rad * (180 / Math.PI);\r\nconst DegToRad = (deg) => deg * (Math.PI / 180);\r\nexport { RadToDeg, DegToRad };\r\n"}

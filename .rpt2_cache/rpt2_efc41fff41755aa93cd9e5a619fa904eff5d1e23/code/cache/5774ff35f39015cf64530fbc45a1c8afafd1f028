@@ -1,1 +1,0 @@
-{"code":"const cloneObject = (object) => (Object.assign({}, object));\r\nconst cloneObjectArray = (array) => array.map(cloneObject);\r\nexport { cloneObject, cloneObjectArray };\r\n"}
