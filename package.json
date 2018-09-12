@@ -9,8 +9,8 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "dev": "concurrently \"lite-server\" \"npm run build-watch\"",
-    "build": "tsc",
-    "build-watch": "tsc --watch",
+    "build": "webpack",
+    "build-watch": "webpack --watch",
     "format": "prettier --single-quote --trailing-comma es5 --write $(git ls-files \"*.ts\")",
     "test": "jest --maxWorkers=4",
     "test-watch": "jest --watchAll"
