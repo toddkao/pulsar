@@ -6,5 +6,6 @@ import { uniqueId, sort, immutableObjectSort, contains, RadToDeg, DegToRad, remo
 import { Entity, Component, Updater } from './ecs';
 import { tickData, point, size, limits, row, navigatorSettings } from './interfaces';
 import { randomPoint, randomPoints, randomInt, randomFloat, randomColor } from './util';
+import './workers';
 export { Grid, Navigator, NavigatorTile, Triangulation, Hull, Vector, Line, Triangle, Shape, BoundingBox, QuadTree, uniqueId, sort, immutableObjectSort, contains, RadToDeg, DegToRad, removeFromArray, Entity, Component, Updater, tickData, point, size, limits, row, navigatorSettings, randomPoint, randomPoints, randomInt, randomFloat, randomColor, };
 //# sourceMappingURL=index.d.ts.map

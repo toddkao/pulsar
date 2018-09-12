@@ -27,6 +27,7 @@ import {
   randomFloat,
   randomColor,
 } from './util';
+import './workers';
 
 export {
   Grid,
