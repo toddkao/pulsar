@@ -10,6 +10,11 @@ module.exports = {
         test: /\.tsx?$/,
         use: 'ts-loader',
         exclude: /node_modules/
+      },
+      {
+        test: /\.worker\.js$/,
+        loader: 'worker-loader',
+        options: { publicPath: '/dist/' }
       }
     ]
   },

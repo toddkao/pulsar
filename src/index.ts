@@ -1,3 +1,4 @@
+import './worker';
 import { Grid, Navigator, NavigatorTile } from './pathfinding';
 import { Triangulation, Hull } from './triangulation';
 import { QuadTree } from './quadtree';
