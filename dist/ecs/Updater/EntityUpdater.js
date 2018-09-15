@@ -19,6 +19,7 @@ export default class EntityUpdater {
             component.entity = entity;
             return this.updater.addComponent(component);
         };
+        entity.start();
         return this.loopComponents(entity.components, callback);
     }
     remove({ components }) {
