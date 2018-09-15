@@ -7,5 +7,5 @@ import tickData from './tickData';
 import Update from './update';
 import updaterReport from './updaterReport';
 import navigatorSettings from './navigatorSettings';
-export { id, limits, point, row, size, tickData, Update, updaterReport, navigatorSettings, };
+export { id, limits, point, row, size, tickData, Update, updaterReport, navigatorSettings };
 //# sourceMappingURL=index.d.ts.map

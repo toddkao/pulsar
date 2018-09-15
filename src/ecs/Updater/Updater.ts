@@ -91,6 +91,7 @@ export default class Updater {
   }
 
   removeComponent(component: Component): boolean {
+    component.stop();
     return removeFromArray(this.components, component);
   }
 
@@ -107,17 +108,8 @@ export default class Updater {
     this.add(invoke);
   }
 
-  invokeRepeating(
-    component: Component,
-    time: number,
-    times: number = Infinity
-  ): void {
-    const invoke: InvokeRepeating = new InvokeRepeating(
-      this,
-      component,
-      time,
-      times
-    );
+  invokeRepeating(component: Component, time: number, times: number = Infinity): void {
+    const invoke: InvokeRepeating = new InvokeRepeating(this, component, time, times);
     this.add(invoke);
   }
 

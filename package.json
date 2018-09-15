@@ -11,7 +11,7 @@
     "dev": "concurrently \"lite-server\" \"npm run build-watch\"",
     "build": "tsc",
     "build-watch": "tsc --watch",
-    "format": "prettier --single-quote --trailing-comma es5 --write $(git ls-files \"*.ts\")",
+    "format": "prettier --print-width 100 --single-quote --trailing-comma es5 --write $(git ls-files \"*.ts\")",
     "test": "jest --maxWorkers=4",
     "test-watch": "jest --watchAll"
   },

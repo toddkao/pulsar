@@ -16,7 +16,7 @@ export default class Navigator implements id {
     private onComplete;
     private maxSteps;
     private steps;
-    constructor({ grid, begin, end, onExplore, onComplete, maxSteps, }: navigatorSettings);
+    constructor({ grid, begin, end, onExplore, onComplete, maxSteps }: navigatorSettings);
     readonly path: row;
     /** Begin the pathfinding process. Does not start if destination is an obstacle. */
     start(): boolean;

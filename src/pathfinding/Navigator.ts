@@ -26,14 +26,7 @@ export default class Navigator implements id {
   private maxSteps: number;
   private steps: number = 0;
 
-  constructor({
-    grid,
-    begin,
-    end,
-    onExplore,
-    onComplete,
-    maxSteps,
-  }: navigatorSettings) {
+  constructor({ grid, begin, end, onExplore, onComplete, maxSteps }: navigatorSettings) {
     this.grid = grid;
     this.begin = begin;
     this.end = end;
@@ -61,9 +54,7 @@ export default class Navigator implements id {
   }
 
   private deregisterNavigatorData(): void {
-    this.registeredTiles.forEach((tile: NavigatorTile) =>
-      tile.deregisterNavigatorData(this)
-    );
+    this.registeredTiles.forEach((tile: NavigatorTile) => tile.deregisterNavigatorData(this));
   }
 
   private calculateH(tile: NavigatorTile): number {
@@ -172,9 +163,7 @@ export default class Navigator implements id {
       return tile;
     }
 
-    const moveCost = tile.isDiagonal(checkTile)
-      ? this.diagonalCost
-      : this.verticalCost;
+    const moveCost = tile.isDiagonal(checkTile) ? this.diagonalCost : this.verticalCost;
 
     if (tileNavData.gVal + moveCost < checkNavData.gVal) {
       checkNavData.parent = tile;

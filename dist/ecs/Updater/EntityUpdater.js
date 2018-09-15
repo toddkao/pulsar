@@ -22,9 +22,10 @@ export default class EntityUpdater {
         entity.start();
         return this.loopComponents(entity.components, callback);
     }
-    remove({ components }) {
+    remove(entity) {
+        entity.stop();
         const callback = component => this.updater.removeComponent(component);
-        return this.loopComponents(components, callback);
+        return this.loopComponents(entity.components, callback);
     }
     toggle({ components }) {
         const callback = component => this.updater.toggleComponent(component);

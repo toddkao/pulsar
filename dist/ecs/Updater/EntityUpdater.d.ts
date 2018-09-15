@@ -9,7 +9,7 @@ export default class EntityUpdater {
     stop(): void;
     clear(): void;
     add(entity: Entity): updaterReport[];
-    remove({ components }: Entity): updaterReport[];
+    remove(entity: Entity): updaterReport[];
     toggle({ components }: Entity): updaterReport[];
     private loopComponents;
 }

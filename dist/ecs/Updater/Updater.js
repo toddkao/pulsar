@@ -76,6 +76,7 @@ export default class Updater {
         return false;
     }
     removeComponent(component) {
+        component.stop();
         return removeFromArray(this.components, component);
     }
     toggleComponent(component) {

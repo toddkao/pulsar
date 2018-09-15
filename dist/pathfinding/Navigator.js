@@ -1,6 +1,6 @@
 import { uniqueId, contains } from '../util';
 export default class Navigator {
-    constructor({ grid, begin, end, onExplore, onComplete, maxSteps, }) {
+    constructor({ grid, begin, end, onExplore, onComplete, maxSteps }) {
         this.id = uniqueId();
         this._path = [];
         this.verticalCost = 1;
@@ -120,9 +120,7 @@ export default class Navigator {
             checkNavData.parent = tile;
             return tile;
         }
-        const moveCost = tile.isDiagonal(checkTile)
-            ? this.diagonalCost
-            : this.verticalCost;
+        const moveCost = tile.isDiagonal(checkTile) ? this.diagonalCost : this.verticalCost;
         if (tileNavData.gVal + moveCost < checkNavData.gVal) {
             checkNavData.parent = tile;
             return tile;

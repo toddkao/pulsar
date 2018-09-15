@@ -4,6 +4,6 @@ import { QuadTree } from './quadtree';
 import { Vector, Line, Triangle, Shape, BoundingBox } from './common';
 import { uniqueId, sort, immutableObjectSort, contains, RadToDeg, DegToRad, removeFromArray, } from './util';
 import { Entity, Component, Updater } from './ecs';
-import { randomPoint, randomPoints, randomInt, randomFloat, randomColor, } from './util';
+import { randomPoint, randomPoints, randomInt, randomFloat, randomColor } from './util';
 export { Grid, Navigator, NavigatorTile, Triangulation, Hull, Vector, Line, Triangle, Shape, BoundingBox, QuadTree, uniqueId, sort, immutableObjectSort, contains, RadToDeg, DegToRad, removeFromArray, Entity, Component, Updater, randomPoint, randomPoints, randomInt, randomFloat, randomColor, };
 //# sourceMappingURL=index.js.map

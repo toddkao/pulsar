@@ -18,24 +18,7 @@ describe('common / Matrix3', () => {
 
 describe('common / Matrix4', () => {
   it('should correctly determine', () => {
-    const m: Matrix4 = new Matrix4(
-      5,
-      4,
-      3,
-      2,
-      1,
-      6,
-      7,
-      8,
-      9,
-      5,
-      2,
-      8,
-      9,
-      1,
-      0,
-      3
-    );
+    const m: Matrix4 = new Matrix4(5, 4, 3, 2, 1, 6, 7, 8, 9, 5, 2, 8, 9, 1, 0, 3);
 
     expect(m.determine()).toBe(-594);
   });

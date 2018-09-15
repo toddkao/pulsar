@@ -1,10 +1,5 @@
 class Matrix2 {
-  constructor(
-    readonly a: number,
-    readonly b: number,
-    readonly c: number,
-    readonly d: number
-  ) {}
+  constructor(readonly a: number, readonly b: number, readonly c: number, readonly d: number) {}
 
   determine(): number {
     return this.a * this.d - this.b * this.c;

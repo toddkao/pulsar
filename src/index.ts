@@ -12,21 +12,8 @@ import {
   removeFromArray,
 } from './util';
 import { Entity, Component, Updater } from './ecs';
-import {
-  tickData,
-  point,
-  size,
-  limits,
-  row,
-  navigatorSettings,
-} from './interfaces';
-import {
-  randomPoint,
-  randomPoints,
-  randomInt,
-  randomFloat,
-  randomColor,
-} from './util';
+import { tickData, point, size, limits, row, navigatorSettings } from './interfaces';
+import { randomPoint, randomPoints, randomInt, randomFloat, randomColor } from './util';
 
 export {
   Grid,

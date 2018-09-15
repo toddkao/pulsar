@@ -11,7 +11,7 @@ const randomColor = () => {
     const b = randomInt(0, 255);
     return `rgb(${r},${g},${b})`;
 };
-const randomPoint = ({ topLeft, topRight, bottomLeft, }) => {
+const randomPoint = ({ topLeft, topRight, bottomLeft }) => {
     const x = randomInt(topLeft.x, topRight.x);
     const y = randomInt(bottomLeft.y, topLeft.y);
     return new Vector({ x, y });
