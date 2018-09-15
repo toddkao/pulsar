@@ -69,6 +69,7 @@ export default class Updater {
     addComponent(component) {
         if (!this.isUpdatingComponent(component)) {
             component.updater = this;
+            component.start();
             this.pushToQueue(component);
             return true;
         }
