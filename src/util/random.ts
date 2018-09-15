@@ -1,8 +1,10 @@
 import Vector from '../common/Vector';
 import BoundingBox from '../common/BoundingBox';
 
+const round = (float: number): number => (float + 0.5) | 0;
+
 const randomInt = (min: number, max: number): number => {
-  return Math.round(randomFloat(min, max));
+  return round(randomFloat(min, max));
 };
 
 const randomFloat = (min: number, max: number): number => {

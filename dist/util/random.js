@@ -1,6 +1,7 @@
 import Vector from '../common/Vector';
+const round = (float) => (float + 0.5) | 0;
 const randomInt = (min, max) => {
-    return Math.round(randomFloat(min, max));
+    return round(randomFloat(min, max));
 };
 const randomFloat = (min, max) => {
     return Math.random() * (max - min) + min;
