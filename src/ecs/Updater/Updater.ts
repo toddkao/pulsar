@@ -30,8 +30,8 @@ export default class Updater {
 
   stop(): boolean {
     if (this.running) {
-      this.running = false;
       cancelAnimationFrame(this.frameId);
+      this.running = false;
       this.clock.stop();
       this.entityUpdater.stop();
       this.components.forEach((component: Component) => component.stop());

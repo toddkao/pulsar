@@ -19,6 +19,7 @@ export default class EntityUpdater {
   }
 
   clear(): void {
+    this.stop();
     this.entities.length = 0;
   }
 

@@ -10,6 +10,7 @@ export default class EntityUpdater {
         this.entities.forEach((entity) => entity.stop());
     }
     clear() {
+        this.stop();
         this.entities.length = 0;
     }
     add(entity) {

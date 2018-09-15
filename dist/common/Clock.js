@@ -4,7 +4,7 @@ export default class Clock {
         this.oldTime = 0;
         this.elapsedTime = 0;
         this.running = false;
-        this.timeFunction = typeof performance === 'undefined' ? Date : performance;
+        this.timeFunction = typeof performance !== 'undefined' ? performance : Date;
     }
     start() {
         this.running = true;
